@@ -156,7 +156,7 @@ class DMeta extends DSingleton {
 				break;
 			
 			case 'img':
-				echo '<div class="dried-input dried-img-input"><label class="dried-img-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label><br/>';
+				echo '<div class="dried-input dried-img-input"><label class="dried-img-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_img_picker($args);
 				if (isset($args['description']) && strlen($args['description']) > 0) {
 					echo '<p class="dried-input__description">' . $args['description'] . '</p>';
@@ -169,7 +169,7 @@ class DMeta extends DSingleton {
 				break;
 			
 			default:
-				echo '<div class="dried-input"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label><br/>';
+				echo '<div class="dried-input"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_input($args);
 				if (isset($args['description']) && strlen($args['description']) > 0) {
 					echo '<p class="dried-input__description">' . $args['description'] . '</p>';
