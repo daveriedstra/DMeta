@@ -142,7 +142,10 @@ class DMeta extends DSingleton {
 				break;
 
 			case 'radio':
-				// TODO
+				echo '<div class="dried-input dried-radio"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
+				self::render_radios($args);
+				self::maybe_render_description($args);
+				echo '</div>';
 				break;
 			
 			case 'select':
@@ -229,6 +232,31 @@ class DMeta extends DSingleton {
 		echo ' name="' . $args['name'] . '" value="' . $value . '" />';
 	}
 
+	/**
+	*		Renders a set of radio inputs
+	*
+	*		@param mixed[] $args Array of arguments. 
+	*		- post_id (int)
+	*		- name (string)
+	*		- storage_type (string) 'option' | 'meta'
+	*		- options (array) ( 'value' => 'name', ... )
+	*		- get_options (callable) a callable which returns options. Passed post_id
+	*/
+	public static function render_radios($args) {
+		$cur_value = self::get_value($args);
+
+		if (array_key_exists('get_options', $args) && is_callable($args['get_options']))
+			$args['options'] = $args['get_options']($args['post_id']);
+
+		foreach ($args['options'] as $opt_key => $opt_value) {
+			echo '<label>' . $opt_value;
+			echo ' <input class="dried-radio__radio" type="radio" name="' . $args['name'] . '" value="' . $opt_key . '"';
+			if ($cur_value == $opt_key)
+				echo ' checked="true" ';
+			echo '/>';
+			echo '</label>';
+		}
+	}
 
 	/**
 	*		Renders a <select>
@@ -366,5 +394,4 @@ class DMeta extends DSingleton {
 				break;
 		}
 	}
-
 }

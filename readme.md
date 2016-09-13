@@ -1,7 +1,7 @@
 # DMeta
 ### A WordPress meta manager utility
 
-This class manages markup, sanitization, and storage for WordPress post meta. Just register your meta settings and tell it where to put the markup and when to save.
+This class manages markup, sanitation, and storage for WordPress post meta. Just register your meta settings and tell it where to put the markup and when to save.
 
 ## Usage
 
@@ -71,9 +71,9 @@ This section describes the arguments that can be passed to `register_meta`
 - `name` - the name of the meta value and the name attribute of the input element. *Required.*
 - `label` - the text inside of the input label
 - `description` - text description of the meta option
-- `input_type` - the type of input. Can be one of "select", "checkbox", "rich_text", or any type which can be set as an `input` element type. _radio is not yet supported, but is coming soon._ *Required.*
+- `input_type` - the type of input. Can be one of "select", "checkbox", "rich_text", or any type which can be set as an `input` element type. *Required.*
 - `data_type` - the type of data. Should be one of `DMeta::DATA_TYPES['STRING']`, `DMeta::DATA_TYPES['RICH_TEXT']`, `DMeta::DATA_TYPES['INT']`, `DMeta::DATA_TYPES['FLOAT']`, or `DMeta::DATA_TYPES['BOOLEAN']`. If not set, `DMeta::DATA_TYPES['STRING']` is assumed. If `input_type` is set to "checkbox", `data_type` will be set to `DMeta::DATA_TYPES['BOOLEAN']`.
-- `options` - an array of options for the select element, in the structure of `array('value' => 'label')`.
-- `get_options` - a callable which is passed the post ID and which returns the options array for a select element. If this is set, the given options array will be ignored.
+- `options` - an array of options for radio inputs or the select element, in the structure of `array('value' => 'label')`.
+- `get_options` - a callable which is passed the post ID and which returns the options array for radio or select. If this is set, the given options array will be ignored.
 - `before_save` - a callable which is executed before the meta is saved. Passed the post ID and the new value.
 - `after_save` - a callable which is executred after the meta is saved. Passed the post ID and the new value.
