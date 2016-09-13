@@ -137,30 +137,25 @@ class DMeta extends DSingleton {
 				echo '<div class="dried-input dried-checkbox"><label class="dried-input__label">';
 				self::render_input($args);
 				echo ' ' . $args['label'] . '</label>';
-				if (isset($args['description']) && strlen($args['description']) > 0) {
-					echo '<p class="dried-input__description">' . $args['description'] . '</p>';
-				}
+				self::maybe_render_description($args);
 				echo '</div>';
 				break;
 
 			case 'radio':
+				// TODO
 				break;
 			
 			case 'select':
 				echo '<div class="dried-input dried-select"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_select($args);
-				if (isset($args['description']) && strlen($args['description']) > 0) {
-					echo '<p class="dried-input__description">' . $args['description'] . '</p>';
-				}
+				self::maybe_render_description($args);
 				echo '</div>';
 				break;
 			
 			case 'img':
 				echo '<div class="dried-input dried-img-input"><label class="dried-img-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_img_picker($args);
-				if (isset($args['description']) && strlen($args['description']) > 0) {
-					echo '<p class="dried-input__description">' . $args['description'] . '</p>';
-				}
+				self::maybe_render_description($args);
 				echo '</div>';
 				break;
 			
@@ -171,13 +166,22 @@ class DMeta extends DSingleton {
 			default:
 				echo '<div class="dried-input"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_input($args);
-				if (isset($args['description']) && strlen($args['description']) > 0) {
-					echo '<p class="dried-input__description">' . $args['description'] . '</p>';
-				}
+				self::maybe_render_description($args);
 				echo '</div>';
 				break;
 		}
 	}	
+
+	/**
+	*		Renders a description paragraph if needed.
+	*	
+	*		@param mixed[] $args the meta's args array
+	*/
+	private static function maybe_render_description($args) {
+		if (isset($args['description']) && strlen($args['description']) > 0) {
+			echo '<p class="dried-input__description">' . $args['description'] . '</p>';
+		}
+	}
 
 
 	/*
