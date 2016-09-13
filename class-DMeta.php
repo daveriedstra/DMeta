@@ -147,7 +147,7 @@ class DMeta extends DSingleton {
 				break;
 			
 			case 'select':
-				echo '<div class="dried-input dried-select"><label class="dried-select__label" for="' . $args['name'] . '">' . $args['label'] . '</label><br/>';
+				echo '<div class="dried-input dried-select"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_select($args);
 				if (isset($args['description']) && strlen($args['description']) > 0) {
 					echo '<p class="dried-input__description">' . $args['description'] . '</p>';
@@ -242,7 +242,7 @@ class DMeta extends DSingleton {
 		if (array_key_exists('get_options', $args) && is_callable($args['get_options']))
 			$args['options'] = $args['get_options']($args['post_id']);
 		
-		echo '<select name="' . $args['name'] . '">';
+		echo '<select class="dried-select__select" name="' . $args['name'] . '">';
 		foreach ($args['options'] as $opt_key => $opt_value) {
 			echo '<option value="' . $opt_key . '"';
 			if ($value == $opt_key)
