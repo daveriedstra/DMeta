@@ -134,7 +134,7 @@ class DMeta extends DSingleton {
 		// determine the required input type and render the appropriate markup
 		switch ($args['input_type']) {
 			case 'checkbox':
-				echo '<div class="dried-input dried-checkbox"><label class="dried-input__label">';
+				echo '<div class="dried-input dried-input--checkbox"><label class="dried-input__label">';
 				self::render_input($args);
 				echo ' ' . $args['label'] . '</label>';
 				self::maybe_render_description($args);
@@ -142,21 +142,21 @@ class DMeta extends DSingleton {
 				break;
 
 			case 'radio':
-				echo '<div class="dried-input dried-radio"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
+				echo '<div class="dried-input dried-input--radio"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_radios($args);
 				self::maybe_render_description($args);
 				echo '</div>';
 				break;
 			
 			case 'select':
-				echo '<div class="dried-input dried-select"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
+				echo '<div class="dried-input dried-input--select"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_select($args);
 				self::maybe_render_description($args);
 				echo '</div>';
 				break;
 			
 			case 'img':
-				echo '<div class="dried-input dried-img-input"><label class="dried-img-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
+				echo '<div class="dried-input dried-input--img-input"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_img_picker($args);
 				self::maybe_render_description($args);
 				echo '</div>';
@@ -167,7 +167,7 @@ class DMeta extends DSingleton {
 				break;
 			
 			default:
-				echo '<div class="dried-input"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
+				echo '<div class="dried-input dried-input--' . $args['input_type'] . '"><label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 				self::render_input($args);
 				self::maybe_render_description($args);
 				echo '</div>';
@@ -320,10 +320,10 @@ class DMeta extends DSingleton {
 		$cur_content = self::get_value($args);
 		$media_buttons = isset($args['media_buttons']) ? $args['media_buttons'] : true;
 
-		echo '<div class="dried-input dried-editor>';
+		echo '<div class="dried-input dried-input--rich-text>';
 
 		if (isset($args['label']))
-			echo '<label class="" for="">' . $args['label'] . '</label>';
+			echo '<label class="dried-input__label" for="' . $args['name'] . '">' . $args['label'] . '</label>';
 
 		wp_editor($cur_content, str_replace('-', '_', $args['name']) . '_ed', array(
 			'media_buttons' => $media_buttons,
