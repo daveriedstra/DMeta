@@ -12,7 +12,7 @@
 * - pass save_queue a post ID and queue name to save the queue
 */
 class DMeta extends DSingleton {
-	private static $_queues = array();
+	public const VERSION = '0.1.1';
 
 	/**
 	*		Types supported by ::sanitize_value
@@ -24,6 +24,11 @@ class DMeta extends DSingleton {
 		'FLOAT' => 'float',
 		'BOOLEAN' => 'bool'
 	);
+
+	/**
+	*		Storage for meta queues
+	*/
+	private static $_queues = array();
 	
 	/**
 	*	Register a meta value to the queue
