@@ -1,5 +1,7 @@
 <?php
 
+require_once('class-DSingleton.php');
+
 /**
 * Meta Manager
 *
@@ -12,7 +14,7 @@
 * - pass save_queue a post ID and queue name to save the queue
 */
 class DMeta extends DSingleton {
-	public const VERSION = '0.1.1';
+	const VERSION = '0.1.2';
 
 	/**
 	*		Types supported by ::sanitize_value
